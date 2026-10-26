@@ -20,6 +20,7 @@ Abra <http://localhost:3001>. Quatro ofertas fictícias são criadas na primeira
 - Reserva pelo nome do cliente e geração de código para retirada.
 - Atualização atômica do estoque para impedir reservas acima da quantidade disponível.
 - Histórico recente de reservas e atualização automática da vitrine.
+- Cancelamento antes do prazo de retirada, com devolução atômica das unidades ao estoque e proteção contra cancelamento duplicado.
 
 ## Stack e decisões
 
@@ -34,6 +35,7 @@ Abra <http://localhost:3001>. Quatro ofertas fictícias são criadas na primeira
 - `POST /api/offers` — publica uma oferta.
 - `POST /api/offers/:id/reservations` — reserva unidades.
 - `GET /api/reservations` — últimas reservas.
+- `POST /api/reservations/:id/cancel` — cancela uma reserva ainda válida e restaura a quantidade da oferta.
 
 ## Próximas melhorias
 
