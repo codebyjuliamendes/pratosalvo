@@ -174,7 +174,8 @@ function createStore(db, { holdMinutes = 90, maxUnitsPerCustomer = 5, newCodeKey
     const item = sql.reservationForRedemption.get(JSON.stringify(codeKeys), JSON.stringify(manageKeys.map(hashKey)));
     // Mesma resposta para código inexistente e código de outro restaurante: nada a enumerar.
     if (!item) throw new NotFoundError('Código não encontrado entre as suas ofertas. Confira as letras e números.');
-    const view = publicReservation(item);
+    // O restaurante não recebe o id público (credencial de cancelamento do cliente).
+    const { id: _id, ...view } = publicReservation(item);
     if (item.status !== STATUS.ACTIVE) throw new ConflictError(STATUS_CONFLICT[item.status], { status: item.status, reservation: view });
     const state = redemptionState({ now, pickupFrom: new Date(item.pickupFrom), deadline: new Date(item.expiresAt) });
     if (state === 'too_early') {
@@ -184,7 +185,8 @@ function createStore(db, { holdMinutes = 90, maxUnitsPerCustomer = 5, newCodeKey
     if (state === 'expired' || !sql.redeem.run(iso(now), item.rowId).changes) {
       throw new ConflictError(STATUS_CONFLICT.expired, { status: STATUS.EXPIRED });
     }
-    return publicReservation(sql.reservationById.get(item.id));
+    const { id: _redeemedId, ...redeemed } = publicReservation(sql.reservationById.get(item.id));
+    return redeemed;
   });
 
   return {

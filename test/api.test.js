@@ -213,6 +213,7 @@ test('validação no balcão: só o restaurante dono, uma única vez', async () 
   assert.equal(ok.status, 200);
   assert.deepEqual([ok.body.status, ok.body.customer, ok.body.quantity, ok.body.totalCents], ['redeemed', 'Fabi', 2, 2580]);
   assert.ok(ok.body.redeemedAt);
+  assert.equal(ok.body.id, undefined, 'restaurante não recebe o id (credencial) da reserva');
 
   const twice = await redeem(made.code, mineOffer.manageKey);
   assert.deepEqual([twice.status, twice.body.status, twice.body.error], [409, 'redeemed', 'Esta reserva já foi retirada.']);
