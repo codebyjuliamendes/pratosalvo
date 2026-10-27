@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    ports:
+      - '3001:3001'
+    environment:
+      LOG_LEVEL: info
+      APP_TIMEZONE: America/Sao_Paulo
+      RATE_LIMIT_PER_MINUTE: 60
+      REDEEM_RATE_LIMIT_PER_MINUTE: 20
+      # Ofertas fictícias para demonstração; remova em uso real.
+      SEED_DEMO: 'true'
+    volumes:
+      - pratosalvo-data:/data
+    restart: unless-stopped
+
+volumes:
+  pratosalvo-data:
