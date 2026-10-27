@@ -61,6 +61,8 @@ function createApp(
     db.prepare('SELECT 1').get();
     res.json({ status: 'ok', version });
   });
+  // Regras públicas para o frontend montar limites e textos sem duplicar configuração.
+  api.get('/rules', (_req, res) => res.json({ maxUnitsPerCustomer, holdMinutes, timeZone }));
   api.use('/offers', offerRoutes(store, { clock, timeZone }));
   api.use('/reservations', reservationRoutes(store, { clock }));
   api.use('/redemptions', redemptionRoutes(store, { clock, limiter: rateLimit({ limit: redeemRateLimitPerMinute }) }));

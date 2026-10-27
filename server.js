@@ -23,6 +23,8 @@ const app = createApp(db, {
   redeemRateLimitPerMinute: config.redeemRateLimitPerMinute,
   trustProxy: config.trustProxy,
   timeZone: config.timeZone,
+  holdMinutes: config.holdMinutes,
+  maxUnitsPerCustomer: config.maxUnitsPerCustomer,
 });
 
 const server = app.listen(config.port, () => logger.info('server_started', { port: config.port, env: config.env }));

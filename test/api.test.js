@@ -288,6 +288,11 @@ test('painel do restaurante lista só as próprias ofertas com contadores', asyn
   assert.equal((await request('POST', '/api/offers/manage', {})).status, 400);
 });
 
+test('regras públicas para o frontend', async () => {
+  const { status, body } = await request('GET', '/api/rules');
+  assert.deepEqual([status, body], [200, { maxUnitsPerCustomer: 5, holdMinutes: 60, timeZone: 'America/Sao_Paulo' }]);
+});
+
 test('erros sempre em JSON', async () => {
   const malformed = await request('POST', '/api/offers', '{"restaurant":');
   assert.deepEqual([malformed.status, malformed.body.error], [400, 'O corpo da requisição não é um JSON válido.']);
