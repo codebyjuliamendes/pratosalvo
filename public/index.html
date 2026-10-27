@@ -1,1 +1,270 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8f7f1"><meta name="description" content="Comida boa merece ser aproveitada. Reserve refeições com desconto perto de você."><title>PratoSalvo — comida boa, desperdício zero</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/styles.css"><script defer src="/app.js"></script><link rel="icon" type="image/svg+xml" href="/mark-ps.svg"><link rel="apple-touch-icon" href="/mark-ps.svg"></head><body><header><a class="brand" href="/"><img class="brand-logo" src="/mark-ps.svg" alt=""> <span>prato<span class="accent">salvo</span></span></a><nav><a href="#ofertas">Ofertas de hoje</a><a href="#reservas">Minhas reservas</a><button id="add">Sou restaurante <span>+</span></button></nav></header><main><section class="hero"><div class="hero-copy"><span class="pill"><i></i> BOM PRA VOCÊ. MELHOR PRO PLANETA.</span><h1>Comida boa merece<br><em>ser aproveitada.</em></h1><p>Descubra refeições deliciosas perto de você, com preço especial e prontas para retirar hoje.</p><a class="cta" href="#ofertas">Encontrar meu próximo prato <b>↓</b></a><div class="hero-stat"><span class="stat-icon">✳</span><span><strong>Pequenas escolhas fazem a diferença.</strong><small>Salve uma refeição. Evite o desperdício.</small></span></div></div><div class="hero-art"><div class="sun"></div><div class="art-note">hoje fica<br><strong>mais gostoso</strong></div><div class="bowl"><div class="bowl-food">🥗</div></div><div class="leaf l1">❋</div><div class="leaf l2">✳</div><div class="bubble">até <strong>−60%</strong></div></div></section><section class="offers" id="ofertas"><div class="section-head"><div><span class="eyebrow">FEITOS HOJE, COM CARINHO</span><h2>Achadinhos do dia <span>✳</span></h2><p>Boas surpresas a poucos minutos de você.</p></div><div class="filters" id="filters"></div></div><div id="offer-grid" class="offer-grid"><div class="loading"></div></div></section><section class="reservations" id="reservas"><div><span class="eyebrow">SEU CANTINHO</span><h2>Reservas recentes</h2><p>Mostre seu código na hora da retirada.</p></div><div id="reservation-list" class="reservation-list"></div></section><footer>Comida salva. Dia melhor. <span>PratoSalvo · projeto de portfólio</span></footer></main><div id="modal" class="modal" hidden></div><div id="toast" class="toast"></div></body></html>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#fff8f2" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Comida boa merece ser aproveitada. Reserve refeições com desconto perto de você." />
+    <title>PratoSalvo — comida boa, desperdício zero</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PratoSalvo" />
+    <meta property="og:title" content="PratoSalvo — comida boa, desperdício zero" />
+    <meta property="og:description" content="Reserve excedentes de restaurantes do bairro com desconto e retire no balcão com um código." />
+    <link rel="icon" type="image/svg+xml" href="/mark-ps.svg" />
+    <link rel="apple-touch-icon" href="/mark-ps.svg" />
+    <script src="/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#ofertas">Pular para as ofertas</a>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="PratoSalvo, início">
+        <img class="brand-logo" src="/mark-ps.svg" alt="" width="32" height="32" />
+        <span>prato<span class="accent">salvo</span></span>
+      </a>
+      <nav class="topnav" aria-label="Seções">
+        <a href="#ofertas">Ofertas de hoje</a>
+        <a href="#reservas">Minhas reservas</a>
+        <a href="#restaurante">Área do restaurante</a>
+      </nav>
+      <div class="topbar-actions">
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Alternar tema"></button>
+        <button id="publish-open" class="button primary" type="button">Sou restaurante <span aria-hidden="true">+</span></button>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="pill"><i aria-hidden="true"></i> BOM PRA VOCÊ. MELHOR PRO PLANETA.</span>
+          <h1 id="hero-title">Comida boa merece<br /><em>ser aproveitada.</em></h1>
+          <p>Descubra refeições deliciosas perto de você, com preço especial e prontas para retirar hoje.</p>
+          <a class="button primary cta" href="#ofertas">Encontrar meu próximo prato <b aria-hidden="true">↓</b></a>
+          <div class="hero-stat">
+            <span class="stat-icon" aria-hidden="true">✳</span>
+            <span><strong>Pequenas escolhas fazem a diferença.</strong><small>Salve uma refeição. Evite o desperdício.</small></span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="art-note">hoje fica<br /><strong>mais gostoso</strong></div>
+          <div class="bowl"><div class="bowl-food">🥗</div></div>
+          <div class="leaf l1">❋</div>
+          <div class="leaf l2">✳</div>
+          <div class="bubble">até <strong>−60%</strong></div>
+        </div>
+      </section>
+
+      <section class="offers" id="ofertas" aria-labelledby="offers-title">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">FEITOS HOJE, COM CARINHO</span>
+            <h2 id="offers-title">Achadinhos do dia <span aria-hidden="true">✳</span></h2>
+            <p>Boas surpresas a poucos minutos de você.</p>
+          </div>
+          <div class="filters" id="filters" role="group" aria-label="Filtrar por categoria"></div>
+        </div>
+        <div id="offer-grid" class="offer-grid" aria-live="polite" aria-busy="true"></div>
+      </section>
+
+      <section class="reservations" id="reservas" aria-labelledby="reservations-title">
+        <div class="section-intro">
+          <span class="eyebrow">SEU CANTINHO</span>
+          <h2 id="reservations-title">Minhas reservas</h2>
+          <p>Mostre o código no balcão na hora da retirada. Elas ficam salvas neste aparelho.</p>
+        </div>
+        <div id="reservation-list" class="reservation-list" aria-live="polite"></div>
+      </section>
+
+      <section class="restaurant" id="restaurante" aria-labelledby="restaurant-title">
+        <div class="section-intro">
+          <span class="eyebrow">PARA RESTAURANTES</span>
+          <h2 id="restaurant-title">Área do restaurante</h2>
+          <p>Valide o código do cliente no balcão. Cada código vale uma única retirada.</p>
+        </div>
+        <div class="restaurant-body">
+          <form id="redeem-form" class="panel redeem-form" novalidate>
+            <label for="redeem-code">Código de retirada</label>
+            <div class="redeem-row">
+              <input
+                id="redeem-code"
+                name="code"
+                class="code-input"
+                placeholder="PS-XXXX-XXXX"
+                autocomplete="off"
+                autocapitalize="characters"
+                spellcheck="false"
+                maxlength="16"
+                required
+                aria-describedby="redeem-help"
+              />
+              <button class="button primary" type="submit">Validar retirada</button>
+            </div>
+            <p id="redeem-help" class="hint">Só funciona para ofertas publicadas neste aparelho.</p>
+            <div id="redeem-result" class="redeem-result" role="status" aria-live="polite"></div>
+          </form>
+          <div class="panel">
+            <h3>Suas ofertas</h3>
+            <div id="managed-list" class="managed-list" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>Comida salva. Dia melhor.</span>
+        <span class="footer-note">PratoSalvo · projeto de portfólio</span>
+      </footer>
+    </main>
+
+    <nav class="tabbar" aria-label="Atalhos">
+      <a href="#ofertas"
+        ><svg
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 11h16a8 8 0 0 1-16 0Z" />
+          <path d="M12 3v3M8 4.5 9 7M16 4.5 15 7" /></svg
+        >Ofertas</a
+      >
+      <a href="#reservas"
+        ><svg
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 8a2 2 0 0 0 0 4v0a2 2 0 0 1 0 4v2h18v-2a2 2 0 0 1 0-4 2 2 0 0 0 0-4V6H3Z" />
+          <path d="M14 6v12" stroke-dasharray="2 2" /></svg
+        >Reservas<b id="tab-count" class="tab-count" hidden></b
+      ></a>
+      <a href="#restaurante"
+        ><svg
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 10h16l-1.5-5h-13Z" />
+          <path d="M5 10v9h14v-9M10 19v-5h4v5" /></svg
+        >Restaurante</a
+      >
+    </nav>
+
+    <dialog id="reserve-dialog" aria-labelledby="reserve-title">
+      <form id="reserve-form" class="dialog-card" novalidate>
+        <button type="button" class="dialog-close" data-close aria-label="Fechar">×</button>
+        <span class="eyebrow">RESERVA</span>
+        <h2 id="reserve-title">Uma boa escolha!</h2>
+        <div id="reserve-summary" class="reserve-summary"></div>
+        <label for="reserve-customer">Seu nome</label>
+        <input id="reserve-customer" name="customer" autocomplete="name" minlength="2" maxlength="60" required />
+        <label for="reserve-quantity">Quantidade</label>
+        <select id="reserve-quantity" name="quantity"></select>
+        <p id="reserve-total" class="total-line" aria-live="polite"></p>
+        <p id="reserve-rules" class="hint"></p>
+        <div class="form-error" role="alert"></div>
+        <button class="button primary submit" type="submit">Confirmar reserva</button>
+      </form>
+    </dialog>
+
+    <dialog id="ticket-dialog" aria-labelledby="ticket-title">
+      <div class="dialog-card ticket">
+        <button type="button" class="dialog-close" data-close aria-label="Fechar">×</button>
+        <span class="eyebrow">RESERVA CONFIRMADA</span>
+        <h2 id="ticket-title">Seu código de retirada</h2>
+        <p class="ticket-code" id="ticket-code"></p>
+        <p id="ticket-details" class="ticket-details"></p>
+        <div class="dialog-actions">
+          <button id="ticket-copy" class="button secondary" type="button">Copiar código</button>
+          <button class="button primary" type="button" data-close>Pronto</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="confirm-dialog" aria-labelledby="confirm-title">
+      <form method="dialog" class="dialog-card">
+        <h2 id="confirm-title">Cancelar esta reserva?</h2>
+        <p id="confirm-text">As unidades voltam para a vitrine e o código deixa de valer.</p>
+        <div class="dialog-actions">
+          <button class="button secondary" value="no">Manter reserva</button>
+          <button class="button danger" value="yes">Cancelar reserva</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="publish-dialog" aria-labelledby="publish-title">
+      <form id="publish-form" class="dialog-card" novalidate>
+        <button type="button" class="dialog-close" data-close aria-label="Fechar">×</button>
+        <span class="eyebrow">PARA RESTAURANTES</span>
+        <h2 id="publish-title">Anunciar uma oferta</h2>
+        <p>Conte para a vizinhança o que ainda está fresquinho.</p>
+        <label for="pub-restaurant">Nome do restaurante</label>
+        <input id="pub-restaurant" name="restaurant" autocomplete="organization" minlength="2" maxlength="60" required />
+        <label for="pub-title">Nome do prato ou kit</label>
+        <input id="pub-title" name="title" minlength="2" maxlength="80" required />
+        <label for="pub-description">Descrição curta</label>
+        <textarea id="pub-description" name="description" minlength="2" maxlength="220" rows="2" required></textarea>
+        <label for="pub-category">Categoria</label>
+        <select id="pub-category" name="category">
+          <option>Refeição</option>
+          <option>Padaria</option>
+          <option>Doces</option>
+          <option>Outros</option>
+        </select>
+        <div class="field-row">
+          <div>
+            <label for="pub-price">Preço promocional (R$)</label>
+            <input id="pub-price" name="price" inputmode="decimal" placeholder="12,90" autocomplete="off" required />
+          </div>
+          <div>
+            <label for="pub-original">Preço original (R$)</label>
+            <input id="pub-original" name="originalPrice" inputmode="decimal" placeholder="26,00" autocomplete="off" required />
+          </div>
+        </div>
+        <p id="pub-discount" class="hint" aria-live="polite"></p>
+        <label for="pub-quantity">Unidades disponíveis</label>
+        <input id="pub-quantity" name="quantity" type="number" inputmode="numeric" min="1" max="100" value="3" required />
+        <div class="field-row">
+          <div>
+            <label for="pub-from">Retirada a partir de</label>
+            <input id="pub-from" name="pickupFrom" type="datetime-local" required />
+          </div>
+          <div>
+            <label for="pub-until">Retirar até</label>
+            <input id="pub-until" name="expiresAt" type="datetime-local" required />
+          </div>
+        </div>
+        <p class="hint">Horários no fuso deste aparelho.</p>
+        <div class="form-error" role="alert"></div>
+        <button class="button primary submit" type="submit">Publicar oferta</button>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
